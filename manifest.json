@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "GameplayFocus",
+    "description": "Shows gameplay under Youtube videos",
+    "version": "1.0",
+    "action": {
+      "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "js/functions.js",
+                "js/insertVideo.js"
+            ],
+            "css": [
+                "css/embeded.css"
+            ],
+            "matches": [
+                "*://www.youtube.com/*"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+  }

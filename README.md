@@ -1,1 +1,1 @@
-# Chrome plugin for gameplay under videos
+# Chrome extension for gameplay under videos
