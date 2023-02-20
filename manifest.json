@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Youtube Longs",
-    "description": "Shows gameplay footage under Youtube videos",
+    "description": "Shows gameplay footage under Youtube videos.",
     "version": "1.1",
     "action": {
         "default_popup": "index.html"
@@ -29,5 +29,6 @@
     },
     "permissions": [
         "tabs"
-    ]
+    ],
+    "default_locale": "en"
 }

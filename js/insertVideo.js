@@ -2,6 +2,7 @@ var videos = {};
 
 waitForElm("#primary-inner").then(elm => {
     elm.insertBefore(createVideo(), elm.children[1]);
+    playRandomVideo();
 });
 
 chrome.runtime.sendMessage({ request_type: "request_videos" });
@@ -41,6 +42,7 @@ chrome.runtime.onMessage.addListener(
         }
         if (request.request_type === "video_data") {
             videos = request.data.videos;
+
         }
     }
 );
