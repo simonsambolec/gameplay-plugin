@@ -5,7 +5,7 @@
     aspect-ratio: 16/9;
     /* No clicking/hover effects */
     pointer-events: none;
-} 
+}
 
 .youtube-container iframe {
     /* Extend it beyond the viewport... */

@@ -1,10 +1,15 @@
 {
-    "manifest_version": 3,
-    "name": "GameplayFocus",
-    "description": "Shows gameplay under Youtube videos",
-    "version": "1.0",
+    "manifest_version": 2,
+    "name": "Youtube Longs",
+    "description": "Shows gameplay footage under Youtube videos",
+    "version": "1.1",
     "action": {
-      "default_popup": "index.html"
+        "default_popup": "index.html"
+    },
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
     },
     "content_scripts": [
         {
@@ -20,5 +25,11 @@
             ],
             "run_at": "document_end"
         }
+    ],
+    "icons": {
+        "128": "yt_longs.png"
+    },
+    "permissions": [
+        "tabs"
     ]
-  }
+}
