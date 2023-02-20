@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Youtube Longs",
     "description": "Shows gameplay footage under Youtube videos",
     "version": "1.1",
@@ -7,9 +7,7 @@
         "default_popup": "index.html"
     },
     "background": {
-        "scripts": [
-            "js/background.js"
-        ]
+        "service_worker": "js/background.js"
     },
     "content_scripts": [
         {
