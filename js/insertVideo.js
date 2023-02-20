@@ -2,6 +2,8 @@ waitForElm("#primary-inner").then(elm => {
     elm.insertBefore(createVideo(), elm.children[1]);
 });
 
+chrome.runtime.sendMessage({ request_type: "request_videos" });
+
 /**
  * 
  * @returns 

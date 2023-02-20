@@ -1,3 +1,4 @@
+
 var videos = {};
 
 /**
@@ -5,9 +6,27 @@ var videos = {};
  */
 async function main() {
     addTabUpdateListener();
+    addMessageListener();
+
     videos = await httpGet("https://raw.githubusercontent.com/simonsambolec/gameplay-plugin/main/assets/videos.json");
     console.log(videos)
 }
+
+
+/**
+ * Listen for messages
+ */
+function addMessageListener() {
+    chrome.runtime.onMessage.addListener(
+        function (request, sender, sendResponse) {
+            console.log(request, sender)
+            if (request.request_type === "request_videos") {
+                chrome.tabs.sendMessage(sender.tab.id, videos)
+            }
+        }
+    );
+}
+
 
 /**
  * Listener for tab updates
@@ -18,10 +37,16 @@ function addTabUpdateListener() {
         if (!changeInfo.url) return;
 
         if (changeInfo.url.includes("www.youtube.com")) {
-            chrome.tabs.sendMessage(tab.id, "hello from background")
+            try {
+                chrome.tabs.sendMessage(tabId, "hello from background")
+            } catch (error) {
+                console.log(error.message)
+            }
         }
     });
 }
+
+
 
 /**
  * 
