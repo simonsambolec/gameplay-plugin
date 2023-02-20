@@ -21,7 +21,7 @@ function addMessageListener() {
         function (request, sender, sendResponse) {
             console.log(request, sender)
             if (request.request_type === "request_videos") {
-                chrome.tabs.sendMessage(sender.tab.id, videos)
+                chrome.tabs.sendMessage(sender.tab.id, { request_type: "video_data", data: videos })
             }
         }
     );
@@ -38,7 +38,7 @@ function addTabUpdateListener() {
 
         if (changeInfo.url.includes("www.youtube.com")) {
             try {
-                chrome.tabs.sendMessage(tabId, "hello from background")
+                chrome.tabs.sendMessage(tabId, { request_type: "url_change" })
             } catch (error) {
                 console.log(error.message)
             }

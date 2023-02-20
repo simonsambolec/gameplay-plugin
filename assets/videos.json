@@ -2,19 +2,23 @@
     "videos": [
         {
             "url": "7ghSziUQnhs",
-            "creator": "Throneful"
+            "creator": "Throneful",
+            "length": "500"
         },
         {
             "url": "jSAzEimOCoQ",
-            "creator": "Pro Gaming Studio"
+            "creator": "Pro Gaming Studio",
+            "length": "500"
         },
         {
             "url": "n_Dv4JMiwK8",
-            "creator": "bbswitzer"
+            "creator": "bbswitzer",
+            "length": "500"
         },
         {
             "url": "xTul-1jdAG8",
-            "creator": "NorWinz"
+            "creator": "NorWinz",
+            "length": "500"
         }
     ]
 }
