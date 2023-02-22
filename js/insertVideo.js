@@ -1,5 +1,4 @@
 var videos = {};
-console.log("yo")
 
 async function main() {
     console.log("disabled", await isDisabled());
@@ -100,17 +99,11 @@ function getRndInteger(min, max) {
 }
 
 function injectCSS() {
-    console.log("1")
     var link = document.createElement("link");
-    console.log("2")
     link.href = chrome.runtime.getURL("css/width-fix.css");
-    console.log("3")
-    console.log(link.href)
-    console.log("4")
     link.type = "text/css";
     link.rel = "stylesheet";
     document.getElementsByTagName("head")[0].appendChild(link);
-    console.log("5")
 }
 
 main();
