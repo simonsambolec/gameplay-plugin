@@ -9,9 +9,11 @@ async function main() {
 
     chrome.runtime.sendMessage({ request_type: "request_videos" });
 
+    injectCSS();
     try {
         let elm = await waitForElm("#primary-inner")
         elm.insertBefore(createVideo(), elm.children[1]);
+
         playRandomVideo();
     } catch (error) {
         console.log("Element not found or: " + error);
@@ -97,5 +99,18 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function injectCSS() {
+    console.log("1")
+    var link = document.createElement("link");
+    console.log("2")
+    link.href = chrome.runtime.getURL("css/width-fix.css");
+    console.log("3")
+    console.log(link.href)
+    console.log("4")
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    document.getElementsByTagName("head")[0].appendChild(link);
+    console.log("5")
+}
 
 main();

@@ -1,0 +1,5 @@
+@media only screen and (min-width: 1016px) {
+    ytd-watch-flexy[flexy] {
+        --ytd-watch-flexy-max-player-width: calc((30vh - (var(--ytd-watch-flexy-masthead-height) + var(--ytd-margin-6x) + var(--ytd-watch-flexy-space-below-player))) * (var(--ytd-watch-flexy-width-ratio) / var(--ytd-watch-flexy-height-ratio))) !important;
+    }
+}

@@ -31,5 +31,15 @@
         "tabs",
         "storage"
     ],
-    "default_locale": "en"
+    "default_locale": "en",
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "css/width-fix.css"
+            ],
+            "matches": [
+                "*://www.youtube.com/*"
+            ]
+        }
+    ]
 }
