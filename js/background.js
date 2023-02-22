@@ -1,15 +1,21 @@
 
 var videos = {};
+var disabled = false;
 
-/**
- * 
- */
+
 async function main() {
+    disabled = await isDisabled();
+
     addTabUpdateListener();
     addMessageListener();
 
     videos = await httpGet("https://raw.githubusercontent.com/simonsambolec/gameplay-plugin/main/assets/videos.json");
     console.log(videos)
+}
+
+async function isDisabled() {
+    result = await chrome.storage.local.get(["disabled"]);
+    return result.disabled;
 }
 
 
@@ -21,10 +27,25 @@ function addMessageListener() {
         function (request, sender, sendResponse) {
             console.log(request, sender)
             if (request.request_type === "request_videos") {
-                chrome.tabs.sendMessage(sender.tab.id, { request_type: "video_data", data: videos })
+                requestVideos(sender);
+            }
+            if (request.request_type === "toggle_extension") {
+                toggleExtension(request.value)
             }
         }
     );
+}
+
+
+function toggleExtension(value) {
+    chrome.storage.local.set({ disabled: value }).then(() => {
+        disabled = value;
+        console.log("Value is set to " + value);
+    });
+}
+
+function requestVideos(sender) {
+    chrome.tabs.sendMessage(sender.tab.id, { request_type: "video_data", data: videos })
 }
 
 
@@ -33,14 +54,13 @@ function addMessageListener() {
  */
 function addTabUpdateListener() {
     chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-
         if (!changeInfo.url) return;
 
         if (changeInfo.url.includes("www.youtube.com")) {
             try {
                 chrome.tabs.sendMessage(tabId, { request_type: "url_change" })
             } catch (error) {
-                console.log(error.message)
+                console.log(error)
             }
         }
     });

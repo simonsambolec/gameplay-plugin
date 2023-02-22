@@ -28,7 +28,8 @@
         "128": "yt_longs.png"
     },
     "permissions": [
-        "tabs"
+        "tabs",
+        "storage"
     ],
     "default_locale": "en"
 }

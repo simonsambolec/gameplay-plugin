@@ -17,3 +17,8 @@ const waitForElm = (selector) => {
         });
     });
 };
+
+async function isDisabled() {
+    result = await chrome.storage.local.get(["disabled"]);
+    return result.disabled;
+}
