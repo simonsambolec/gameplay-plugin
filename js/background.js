@@ -10,7 +10,6 @@ async function main() {
     addMessageListener();
 
     videos = await httpGet("https://raw.githubusercontent.com/simonsambolec/gameplay-plugin/main/assets/videos.json");
-    console.log(videos)
 }
 
 async function isDisabled() {
@@ -25,7 +24,7 @@ async function isDisabled() {
 function addMessageListener() {
     chrome.runtime.onMessage.addListener(
         function (request, sender, sendResponse) {
-            console.log(request, sender)
+            //console.log(request, sender)
             if (request.request_type === "request_videos") {
                 requestVideos(sender);
             }
@@ -36,11 +35,13 @@ function addMessageListener() {
     );
 }
 
-
+/**
+ * Toggles extension
+ * @param {*} value true if disabled, false if enabled
+ */
 function toggleExtension(value) {
     chrome.storage.local.set({ disabled: value }).then(() => {
         disabled = value;
-        console.log("Value is set to " + value);
     });
 }
 

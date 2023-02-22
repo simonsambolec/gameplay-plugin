@@ -1,17 +1,38 @@
 var videos = {};
+console.log("yo")
 
 async function main() {
     console.log("disabled", await isDisabled());
     if (await isDisabled()) return;
 
-    waitForElm("#primary-inner").then(elm => {
+    addMessageListener();
+
+    chrome.runtime.sendMessage({ request_type: "request_videos" });
+
+    try {
+        let elm = await waitForElm("#primary-inner")
         elm.insertBefore(createVideo(), elm.children[1]);
         playRandomVideo();
-    });
+    } catch (error) {
+        console.log("Element not found or: " + error);
+    }
+
 }
 
+function addMessageListener() {
+    chrome.runtime.onMessage.addListener(
+        function (request, sender, sendResponse) {
+            console.log(request)
+            if (request.request_type === "url_change") {
+                playRandomVideo();
+            }
+            if (request.request_type === "video_data") {
+                videos = request.data.videos;
+            }
+        }
+    );
+}
 
-chrome.runtime.sendMessage({ request_type: "request_videos" });
 
 /**
  * 
@@ -37,20 +58,7 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
-/**
- * Listen for URL change from background script
- */
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        console.log(request)
-        if (request.request_type === "url_change") {
-            playRandomVideo();
-        }
-        if (request.request_type === "video_data") {
-            videos = request.data.videos;
-        }
-    }
-);
+
 
 
 /**
