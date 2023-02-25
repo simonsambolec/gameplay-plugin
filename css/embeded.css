@@ -5,7 +5,10 @@
     aspect-ratio: 16/9;
     /* No clicking/hover effects */
     pointer-events: none;
+    position: relative;
+    z-index: 1000;
 }
+
 
 .youtube-container iframe {
     /* Extend it beyond the viewport... */
@@ -13,5 +16,6 @@
     height: 100%;
     /* ...and bring it back again */
     margin-left: -100%;
+    position: relative;
+    z-index: 1000;
 }
-
